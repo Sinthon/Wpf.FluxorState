@@ -13,7 +13,7 @@ namespace Wpf.FluxorState;
 
 public partial class App : Application
 {
-    private IServiceProvider _serviceProvider = default!;
+    private static IServiceProvider _serviceProvider = default!;
 
     protected override async void OnStartup(StartupEventArgs e)
     {
@@ -24,18 +24,14 @@ public partial class App : Application
 
         _serviceProvider = services.BuildServiceProvider();
 
-        try
-        {
-            var store = _serviceProvider.GetRequiredService<IStore>();
-            await store.InitializeAsync();
+        IStore store = _serviceProvider.GetRequiredService<IStore>();
+        await store.InitializeAsync();
 
-            var viewFactory = _serviceProvider.GetRequiredService<IViewFactory>();
-            var mainWindow = viewFactory.CreateView<MainWindowViewModel>() as MainWindow;
+        var viewFactory = _serviceProvider.GetRequiredService<IViewFactory>();
+
+        if (viewFactory.CreateView<MainWindowViewModel>() is MainWindow mainWindow)
+        {
             mainWindow.Show();
-        }
-        catch (Exception ex)
-        {
-
         }
     }
 
