@@ -1,9 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using Wpf.FluxorState.Framework.Abstractions;
 
 namespace Wpf.FluxorState.Framework;
@@ -17,13 +13,8 @@ public class ViewModelFactory : IViewModelFactory
         _serviceProvider = serviceProvider;
     }
 
-    public T CreateViewModel<T>() where T : class
+    public TViewModel CreateViewModel<TViewModel>() where TViewModel : ViewModelBase
     {
-        return ActivatorUtilities.CreateInstance<T>(_serviceProvider);
-    }
-
-    public object CreateViewModel(Type viewModelType, params object[] parameters)
-    {
-        return ActivatorUtilities.CreateInstance(_serviceProvider, viewModelType, parameters);
+        return ActivatorUtilities.CreateInstance<TViewModel>(_serviceProvider);
     }
 }
