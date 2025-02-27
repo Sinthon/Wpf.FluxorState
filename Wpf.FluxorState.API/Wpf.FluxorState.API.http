@@ -1,0 +1,6 @@
+@Wpf.FluxorState.API_HostAddress = https://localhost:7141
+
+GET {{Wpf.FluxorState.API_HostAddress}}/api/weatherforecast/
+Accept: application/json
+
+###
