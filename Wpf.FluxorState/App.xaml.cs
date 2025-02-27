@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Windows;
 using Wpf.FluxorState.Framework;
 using Wpf.FluxorState.Framework.Abstractions;
+using Wpf.FluxorState.Infrastructure;
 using Wpf.FluxorState.Store;
 using Wpf.FluxorState.ViewModels;
 using Wpf.FluxorState.Views;
@@ -38,6 +39,7 @@ public partial class App : Application
     private void ConfigureServices(IServiceCollection services)
     {
         services.AddFluxorStore();
+        services.AddInfrastructure();
         services.AddSingleton<IViewModelFactory, ViewModelFactory>();
         services.AddSingleton<IViewFactory, ViewFactory>();
         services.AddSingleton<IDialogManager, DialogManager>();

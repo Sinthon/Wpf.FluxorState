@@ -16,17 +16,19 @@ internal class MainWindowViewModel : ViewModelBase
     {
         _viewFactory = viewFactory;
         ShowCounter = new RelayCommand(OnShowCounter);
+        ShowWeather = new RelayCommand(OnShowWeather);
 
         // Open counter page
         OnShowCounter();
     }
 
     public ICommand ShowCounter { get; }
+    public ICommand ShowWeather { get; }
 
-    public void OnShowCounter()
-    {
-        ActiveView = _viewFactory.CreateView<CounterViewModel>();
-    }
+    public void OnShowCounter() => ActiveView = _viewFactory.CreateView<CounterViewModel>();
+
+    public void OnShowWeather() => ActiveView = _viewFactory.CreateView<WeatherViewModel>();
+
 
     private UIElement? _active;
     public UIElement? ActiveView

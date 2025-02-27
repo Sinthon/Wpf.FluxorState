@@ -48,6 +48,7 @@
                         Width="40"
                         Height="40"
                         Padding="0"
+                        Command="{Binding ShowCounter}"
                         Style="{DynamicResource MaterialDesignFlatButton}"
                         ToolTip="Activity">
                         <materialDesign:PackIcon
@@ -59,6 +60,7 @@
                         Width="40"
                         Height="40"
                         Padding="0"
+                        Command="{Binding ShowWeather}"
                         Style="{DynamicResource MaterialDesignFlatButton}"
                         ToolTip="Lists">
                         <materialDesign:PackIcon

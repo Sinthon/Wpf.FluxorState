@@ -28,10 +28,20 @@ internal class ViewFactory : IViewFactory
     {
         return viewModel switch
         {
+            /// Windows
             MainWindowViewModel vm => CreateViewInstance(typeof(MainWindow), vm),
+
+            /// SubViews
             ChildComponentViewModel vm => CreateViewInstance(typeof(ChildComponentView), vm),
+
+            /// Components
             CounterViewModel vm => CreateViewInstance(typeof(CounterView), vm),
+            WeatherViewModel vm => CreateViewInstance(typeof(WeatherView), vm),
+
+            /// Dialogs
             DialogViewModel vm => CreateViewInstance(typeof(DialogView), vm),
+
+            /// Default
             _ => throw new InvalidOperationException($"No view registered for ViewModel {viewModel.GetType().Name}")
         };
     }
