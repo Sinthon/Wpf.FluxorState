@@ -7,22 +7,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
         <StackPanel Margin="10">
-            <Button Content="Fetch Weather" Command="{Binding FetchWeatherCommand}" />
-
+            <Button Content="Fetch Weather" Command="{Binding FetchWeatherCommand}"/>
             <TextBlock Text="{Binding ErrorMessage}" Foreground="Red"/>
-
-            <ListBox ItemsSource="{Binding Forecasts}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Date}" Width="100"/>
-                            <TextBlock Text="{Binding TemperatureC}" Width="50"/>
-                            <TextBlock Text="{Binding Summary}" Width="200"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <TextBlock Text="{Binding Forecasts.Count}" Foreground="Red"/>
         </StackPanel>
+
+        <DataGrid Grid.Row="1" Margin="10" ItemsSource="{Binding Forecasts}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="100"/>
+                <DataGridTextColumn Header="Temp (°C)" Binding="{Binding TemperatureC}" Width="150"/>
+                <DataGridTextColumn Header="Temp (°F)" Binding="{Binding TemperatureF}" Width="150"/>
+                <DataGridTextColumn Header="Summary" Binding="{Binding Summary}" Width="400"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

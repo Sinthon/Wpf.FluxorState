@@ -1,6 +1,50 @@
-@Wpf.FluxorState.API_HostAddress = https://localhost:7141
+@baseUrl = https://localhost:7141
 
-GET {{Wpf.FluxorState.API_HostAddress}}/api/weatherforecast/
+# Get all weather forecasts
+GET {{baseUrl}}/api/weatherforecast/
 Accept: application/json
 
 ###
+
+# Get weather forecast by specific properties (id or date)
+GET {{baseUrl}}/api/weatherforecast/by?id=d1f79857-15a1-4f36-b12e-27d9dbf59325&data=2025-02-27
+Accept: application/json
+
+###
+
+# Create a new weather forecast
+POST {{baseUrl}}/api/weatherforecast/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "date": "2025-02-27",
+  "temperatureC": 22,
+  "summary": "Sunny"
+}
+
+###
+
+# Update an existing weather forecast
+PUT {{baseUrl}}/api/weatherforecast/d1f79857-15a1-4f36-b12e-27d9dbf59325
+Content-Type: application/json
+Accept: application/json
+
+{
+  "date": "2025-02-27",
+  "temperatureC": 25,
+  "summary": "Hot"
+}
+
+###
+
+# Delete a weather forecast by id
+DELETE {{baseUrl}}/api/weatherforecast/0ada76ef-18b2-4e17-aece-2d86bb3d6909
+Accept: application/json
+
+###
+
+# Send notifycation to all the client
+POST {{baseUrl}}/api/weatherforecast/bulk
+Accept: application/json
+

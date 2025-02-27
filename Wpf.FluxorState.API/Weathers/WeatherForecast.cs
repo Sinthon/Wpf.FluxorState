@@ -1,9 +1,9 @@
-namespace Wpf.FluxorState.API;
+using Wpf.FluxorState.API.Common;
 
-public class WeatherForecast
+namespace Wpf.FluxorState.API.Weathers;
+
+public class WeatherForecast : AgroogateRoot
 {
-    public Guid Id { get; set; }
-
     public DateOnly Date { get; set; }
 
     public int TemperatureC { get; set; }

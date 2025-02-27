@@ -1,10 +1,8 @@
-﻿using Fluxor;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Windows;
-using System.Windows.Input;
 using Wpf.FluxorState.Framework;
 using Wpf.FluxorState.Framework.Abstractions;
+using Wpf.FluxorState.Framework.Commands;
 using Wpf.FluxorState.ViewModels.Components;
 
 namespace Wpf.FluxorState.ViewModels;
@@ -22,13 +20,14 @@ internal class MainWindowViewModel : ViewModelBase
         OnShowCounter();
     }
 
-    public ICommand ShowCounter { get; }
-    public ICommand ShowWeather { get; }
+    public string Title { get; } = "Welcome to WPF with Fluxor!";
+
+    public IActionCommand ShowCounter { get; }
+    public IActionCommand ShowWeather { get; }
 
     public void OnShowCounter() => ActiveView = _viewFactory.CreateView<CounterViewModel>();
 
-    public void OnShowWeather() => ActiveView = _viewFactory.CreateView<WeatherViewModel>();
-
+    public void OnShowWeather() => Application.Current.Dispatcher.Invoke(() => ActiveView = _viewFactory.CreateView<WeatherViewModel>());
 
     private UIElement? _active;
     public UIElement? ActiveView
@@ -38,20 +37,6 @@ internal class MainWindowViewModel : ViewModelBase
         {
             _active = value;
             OnPropertyChanged();
-        }
-    }
-
-    private string _title = "Welcome to WPF with Fluxor!";
-    public string Title
-    {
-        get => _title;
-        set
-        {
-            if (_title != value)
-            {
-                _title = value;
-                OnPropertyChanged();
-            }
         }
     }
 }

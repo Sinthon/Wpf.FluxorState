@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using Wpf.FluxorState.Framework;
 using Wpf.FluxorState.Framework.Abstractions;
+using Wpf.FluxorState.Framework.Commands;
 using Wpf.FluxorState.State.Features.Counter;
 
 namespace Wpf.FluxorState.ViewModels.Components;
@@ -31,9 +32,9 @@ public class CounterViewModel : ViewModelBase
     }
 
     public IState<CounterState> CounterState { get; set; } = default!;
-    public ICommand IncrementCount { get; }
-    public ICommand DecrementCount { get; }
-    public ICommand AppendChildView { get; }
+    public IActionCommand IncrementCount { get; }
+    public IActionCommand DecrementCount { get; }
+    public IActionCommand AppendChildView { get; }
 
     private void OnIncrementCount()
     {
