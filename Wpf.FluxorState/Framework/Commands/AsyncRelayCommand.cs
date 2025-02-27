@@ -2,10 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Wpf.FluxorState.Framework.Abstractions;
 
-namespace Wpf.FluxorState.Framework;
+namespace Wpf.FluxorState.Framework.Commands;
 
-public class AsyncRelayCommand : ICommand
+public class AsyncRelayCommand : IActionCommand
 {
     private readonly Func<CancellationToken, Task>? _executeWithToken;
     private readonly Func<Task>? _executeWithoutToken;

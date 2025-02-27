@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Input;
+using Wpf.FluxorState.Framework.Abstractions;
 
-namespace Wpf.FluxorState.Framework;
+namespace Wpf.FluxorState.Framework.Commands;
 
-public class RelayCommand : ICommand
+public class RelayCommand : IActionCommand
 {
     private readonly Action<object?> _execute;
     private readonly Func<object?, bool>? _canExecute;
